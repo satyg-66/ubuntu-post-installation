@@ -15,7 +15,7 @@ function ubuntu22_install(){
     Pin: release o=LP-PPA-mozillateam
     Pin-Priority: 501
     ' | tee /etc/apt/preferences.d/mozilla-firefox
-    apt install -t 'o=LP-PPA-mozillateam' firefox -y
+    apt install -t 'o=LP-PPA-mozillateam' firefox
 }
 
 # Update & upgrade system followed by installing software
@@ -45,11 +45,12 @@ EOF
 
   # Git clone Nord GNOME theme, icons and Nord theme firefox
   echo "[ ##### DOWNLOADING THEMES ##### ]"
-  mkdir /home/"$RUID"/.themes
-  chown "$RUID":"$RUID" /home/"$RUID"/.themes
+  mkdir /home/"$RUID"/.themes && chown "$RUID":"$RUID" /home/"$RUID"/.themes
+  mkdir /home/"$RUID"/.icons && chown "$RUID":"$RUID" /home/"$RUID"/.icons
   tar -xf nordic-darker.tar.xz
-  mv /home/"$RUID"/ubuntu-post-installation/Nordic-darker /home/"$RUID"/.themes
-  rm nordic-darker.tar.xz
+  mv /home/"$RUID"/ubuntu-post-installation/nordic-darker/Nordic-darker /home/"$RUID"/.themes
+  tar -xf nordic-darker-standard-buttons.tar.xz
+  mv /home/"$RUID"/ubuntu-post-installation/nordic-darker-standard-buttons/Nordic-darker-standard-buttons /home/"$RUID"/.icons
   git clone https://github.com/EliverLara/firefox-nordic-theme.git
   chown -R "$RUID":"$RUID" /home/"$RUID"/ubuntu-post-installation/firefox-nordic-theme/
 }
@@ -76,14 +77,16 @@ RUSER_UID=$(id -u ${RUID})
 OUTPUT=$(lsb_release -r)
 SUB='22'
 
-if [[ "$OUTPUT" =~ .*"$SUB".* ]]; then
-    ubuntu22_install
-fi
+# if [[ "$OUTPUT" =~ .*"$SUB".* ]]; then
+#     ubuntu22 
+# fi
 
 # Calling function to install apps
 install_apps
+
 # Calling function to cleanup
 cleanup
+
 # Running settings script
 su -c "source /home/"$RUID"/ubuntu-post-installation/settings" - "$RUID"
 
