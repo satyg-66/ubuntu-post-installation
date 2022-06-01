@@ -15,7 +15,7 @@ function ubuntu22_install(){
     Pin: release o=LP-PPA-mozillateam
     Pin-Priority: 1001
     ' | tee /etc/apt/preferences.d/mozilla-firefox
-    apt install -t 'o=LP-PPA-mozillateam' firefox
+    apt install -t 'o=LP-PPA-mozillateam' firefox -y
 }
 
 # Update & upgrade system followed by installing software
