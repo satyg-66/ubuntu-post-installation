@@ -11,9 +11,9 @@ function ubuntu22_install(){
     snap remove --purge firefox
     add-apt-repository ppa:mozillateam/ppa -y
     echo '
-    Package: *
+    Package: firefox*
     Pin: release o=LP-PPA-mozillateam
-    Pin-Priority: 1001
+    Pin-Priority: 501
     ' | tee /etc/apt/preferences.d/mozilla-firefox
     apt install -t 'o=LP-PPA-mozillateam' firefox -y
 }
@@ -45,8 +45,10 @@ EOF
 
   # Git clone Nord GNOME theme, icons and Nord theme firefox
   echo "[ ##### DOWNLOADING THEMES ##### ]"
+  mkdir /home/"$RUID"/.themes
+  chown "$RUID":"$RUID" /home/"$RUID"/.themes
   tar -xf nordic-darker.tar.xz
-  mv /home/"$RUID"/ubuntu-post-installation/Nordic-darker /usr/share/themes
+  mv /home/"$RUID"/ubuntu-post-installation/Nordic-darker /home/"$RUID"/.themes
   rm nordic-darker.tar.xz
   git clone https://github.com/EliverLara/firefox-nordic-theme.git
   chown -R "$RUID":"$RUID" /home/"$RUID"/ubuntu-post-installation/firefox-nordic-theme/
@@ -75,7 +77,7 @@ OUTPUT=$(lsb_release -r)
 SUB='22'
 
 if [[ "$OUTPUT" =~ .*"$SUB".* ]]; then
-    ubuntu22
+    ubuntu22_install
 fi
 
 # Calling function to install apps
