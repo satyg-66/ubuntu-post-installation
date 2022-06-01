@@ -7,8 +7,8 @@
 
 function ubuntu22_settings(){
     # enabeling extensions
-    gnome-extensions enable apps-menu@gnome-shell-extensions.gcampax.github.com --quiet
-    gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com --quiet
+    DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$RUSER_UID/bus" gnome-extensions enable apps-menu@gnome-shell-extensions.gcampax.github.com --quiet
+    DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$RUSER_UID/bus" gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com --quiet
 
     # Config file to decrese gnome window border fatness
     mv /home/"$RUID"/ubuntu-post-installation/gtk.css /home/"$RUID"/.config/gtk-3.0/gtk.css
