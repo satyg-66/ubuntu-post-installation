@@ -46,7 +46,7 @@ EOF
   # Git clone Nord GNOME theme, icons and Nord theme firefox
   echo "[ ##### DOWNLOADING THEMES ##### ]"
   tar -xf nordic-darker.tar.xz
-  mv /home/"$RUID"/ubuntu-20.04-post-installation/Nordic-darker /usr/share/themes
+  mv /home/"$RUID"/ubuntu-post-installation/Nordic-darker /usr/share/themes
   rm nordic-darker.tar.xz
   git clone https://github.com/EliverLara/firefox-nordic-theme.git
   chown -R "$RUID":"$RUID" /home/"$RUID"/ubuntu-post-installation/firefox-nordic-theme/
