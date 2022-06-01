@@ -48,9 +48,9 @@ EOF
   mkdir /home/"$RUID"/.themes && chown "$RUID":"$RUID" /home/"$RUID"/.themes
   mkdir /home/"$RUID"/.icons && chown "$RUID":"$RUID" /home/"$RUID"/.icons
   tar -xf nordic-darker.tar.xz
-  mv /home/"$RUID"/ubuntu-post-installation/nordic-darker/Nordic-darker /home/"$RUID"/.themes
+  mv /home/"$RUID"/ubuntu-post-installation/Nordic-darker /home/"$RUID"/.themes
   tar -xf nordic-darker-standard-buttons.tar.xz
-  mv /home/"$RUID"/ubuntu-post-installation/nordic-darker-standard-buttons/Nordic-darker-standard-buttons /home/"$RUID"/.icons
+  mv /home/"$RUID"/ubuntu-post-installation/Nordic-darker-standard-buttons /home/"$RUID"/.icons
   git clone https://github.com/EliverLara/firefox-nordic-theme.git
   chown -R "$RUID":"$RUID" /home/"$RUID"/ubuntu-post-installation/firefox-nordic-theme/
 }
