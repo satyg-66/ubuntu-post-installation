@@ -7,15 +7,17 @@
 
 function ubuntu22_install(){
     # Replace firefox snap with regular firefox
-    snap disable firefox
-    snap remove --purge firefox
-    add-apt-repository ppa:mozillateam/ppa -y
     echo '
     Package: firefox*
     Pin: release o=LP-PPA-mozillateam
-    Pin-Priority: 501
+    Pin-Priority: -1
     ' | tee /etc/apt/preferences.d/mozilla-firefox
-    apt install -t 'o=LP-PPA-mozillateam' firefox
+    apt purge firefox
+    snap remove firefox
+    add-apt-repository ppa:mozillateam/ppa
+    apt-get update
+    apt-get install firefox
+    echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 }
 
 # Update & upgrade system followed by installing software
@@ -77,9 +79,9 @@ RUSER_UID=$(id -u ${RUID})
 OUTPUT=$(lsb_release -r)
 SUB='22'
 
-# if [[ "$OUTPUT" =~ .*"$SUB".* ]]; then
-#     ubuntu22 
-# fi
+if [[ "$OUTPUT" =~ .*"$SUB".* ]]; then
+    ubuntu22 
+fi
 
 # Calling function to install apps
 install_apps
