@@ -26,7 +26,8 @@ function ubuntu22_settings(){
 
     # Setting Gnome Theme
     echo "[ ##### SETTING GNOME THEME ##### ]"
-    DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$RUSER_UID/bus" gsettings set org.gnome.desktop.interface gtk-theme "Nordic-darker-standard-buttons"
+    DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$RUSER_UID/bus" gsettings set org.gnome.desktop.interface gtk-theme "Nordic-darker"
+    DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$RUSER_UID/bus" gsettings set org.gnome.desktop.interface icon-theme "Nordic-darker-standard-buttons"
     echo "GNOME theme is set! Proceeding..."
 
     # Configure terminator terminal emulator
@@ -34,8 +35,6 @@ function ubuntu22_settings(){
     mkdir -p /home/"$RUID"/.config/terminator
     mv /home/"$RUID"/ubuntu-post-installation/config /home/"$RUID"/.config/terminator/config
     echo "Terminator is configured! Proceeding..."
-    DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$RUSER_UID/bus" gsettings set org.gnome.desktop.interface icon-theme "Yaru-prussiangreen-dark"
-    echo "GNOME theme is set! Proceeding..."
 
     # Configuring Firefox theme
     echo "[ ##### CONFIGURING FIREFOX ##### ]"
