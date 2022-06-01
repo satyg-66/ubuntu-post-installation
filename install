@@ -75,7 +75,8 @@ OUTPUT=$(lsb_release -r)
 SUB='22'
 
 if [[ "$OUTPUT" =~ .*"$SUB".* ]]; then
-    ubuntu22 
+    ubuntu22
+fi
 
 # Calling function to install apps
 install_apps
