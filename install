@@ -45,6 +45,9 @@ EOF
   snap install codium --classic
   snap install discord telegram-desktop
 
+  # Removing pre-installed apps
+  apt purge aisleriot cheese gnome-mahjongg gnome-mines gnome-sudoku rhythmbox shotwell 
+  
   # Git clone Nord GNOME theme, icons and Nord theme firefox
   echo "[ ##### DOWNLOADING THEMES ##### ]"
   mkdir /home/"$RUID"/.themes && chown "$RUID":"$RUID" /home/"$RUID"/.themes
