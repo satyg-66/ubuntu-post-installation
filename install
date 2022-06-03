@@ -46,7 +46,7 @@ EOF
   snap install discord telegram-desktop
 
   # Removing pre-installed apps
-  apt purge aisleriot cheese gnome-mahjongg gnome-mines gnome-sudoku rhythmbox shotwell 
+  apt purge aisleriot cheese gnome-mahjongg gnome-mines gnome-sudoku rhythmbox shotwell -y
   
   # Git clone Nord GNOME theme, icons and Nord theme firefox
   echo "[ ##### DOWNLOADING THEMES ##### ]"
