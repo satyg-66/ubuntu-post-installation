@@ -57,7 +57,10 @@ function ubuntu22_settings(){
 function ubuntu20_settings(){
     # Config file to decrese gnome window border fatness
     mv /home/"$RUID"/ubuntu-post-installation/gtk.css /home/"$RUID"/.config/gtk-3.0/gtk.css
+    
+    # Removing desktop icons
     DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$RUSER_UID/bus" gsettings set org.gnome.shell.extensions.desktop-icons show-home false
+    DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$RUSER_UID/bus" gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
 
     # Setting wallpaper
     echo "[ ##### SETTING WALLPAPER ##### ]"
